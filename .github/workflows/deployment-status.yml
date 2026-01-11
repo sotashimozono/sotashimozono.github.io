@@ -16,7 +16,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            # Add comment to latest commit
+            // Add comment to latest commit
             const commits = await github.rest.repos.listCommits({
               owner: context.repo.owner,
               repo: context.repo.repo,
