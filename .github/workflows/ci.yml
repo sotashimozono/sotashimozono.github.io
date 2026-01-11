@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  quality-checks:
+    runs-on: ubuntu-latest
+    name: Quality Checks
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Check file sizes
+        run: |
+          echo "Checking for large files..."
+          find . -type f -size +1M -not -path "./.git/*" -exec ls -lh {} \; || true
+      
+      - name: Check for TODO comments
+        run: |
+          echo "Checking for TODO comments..."
+          grep -r "TODO\|FIXME\|HACK" --include="*.html" --include="*.js" --include="*.css" . || true
+      
+      - name: Validate JSON files
+        run: |
+          echo "Validating JSON files..."
+          for file in $(find . -name "*.json" -not -path "./.git/*" -not -path "./.devcontainer/*"); do
+            echo "Checking $file"
+            python3 -m json.tool "$file" > /dev/null || exit 1
+          done
+      
+      - name: Summary
+        run: |
+          echo "✅ All quality checks passed!"
