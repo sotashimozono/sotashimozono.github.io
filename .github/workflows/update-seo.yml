@@ -35,7 +35,7 @@ jobs:
           fi
       
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: 'chore: Update SEO metadata timestamps'
           title: '🔄 Update SEO metadata'
