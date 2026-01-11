@@ -27,8 +27,8 @@
 /index.html        # Main page
 /robots.txt        # Crawler directives
 /sitemap.xml       # Site map
-/llm.txt           # This file (AI-friendly info)
-/ai.txt            # Alias for llm.txt
+/llm.txt           # AI-friendly site info
+/ai.txt            # AI-friendly site info (same as llm.txt)
 ```
 
 ## Content Topics
