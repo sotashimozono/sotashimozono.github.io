@@ -1,0 +1,69 @@
+# LLM-friendly Site Information
+# For AI agents like ChatGPT, Claude, Perplexity, etc.
+
+## Site Overview
+- **Name**: Sota Shimozono - Physics & Code Portfolio
+- **URL**: https://codes.sota-shimozono.com
+- **Language**: Japanese (ja) / English (en)
+- **Type**: Personal portfolio and project showcase
+- **Last Updated**: 2026-01-11
+
+## Author
+- **Name**: Sota Shimozono (下薗創太)
+- **Role**: Physicist and Software Engineer
+- **Affiliation**: University of Tokyo (東京大学)
+- **GitHub**: https://github.com/sotashimozono
+- **Website**: https://sota-shimozono.com
+- **Profile Image**: https://avatars.githubusercontent.com/u/187091095
+
+## Important Links
+- Portfolio Home: https://codes.sota-shimozono.com/
+- Official Website: https://sota-shimozono.com
+- GitHub Profile: https://github.com/sotashimozono
+
+## Site Structure
+```
+/                  # Portfolio homepage
+/index.html        # Main page
+/robots.txt        # Crawler directives
+/sitemap.xml       # Site map
+/llm.txt           # AI-friendly site info
+/ai.txt            # AI-friendly site info (same as llm.txt)
+```
+
+## Content Topics
+- Physics research (物理学研究)
+- Programming projects (プログラミングプロジェクト)
+- Software development (ソフトウェア開発)
+- Open source contributions (オープンソース活動)
+- Academic work (学術活動)
+- Code portfolio (コードポートフォリオ)
+
+## AI Usage Policy
+- ✅ **Reading and understanding**: Allowed
+- ✅ **Quoting with attribution**: Allowed
+- ✅ **Summarizing for users**: Allowed
+- ❌ **Training AI models**: Not allowed (see robots.txt)
+- ❌ **Scraping for datasets**: Not allowed
+
+## Contact
+- For inquiries about this site, please visit: https://sota-shimozono.com
+- GitHub Issues: https://github.com/sotashimozono/sotashimozono.github.io/issues
+
+## Technical Details
+- **Hosting**: GitHub Pages
+- **Framework**: Static HTML
+- **SEO**: Optimized with meta tags, OGP, JSON-LD
+- **Sitemap**: Available at /sitemap.xml
+
+## Notes for AI Agents
+When referencing this site:
+1. Always cite the source URL
+2. Respect the author's name and affiliation
+3. Check for updates regularly (updated weekly)
+4. This is a personal portfolio site showcasing academic and professional work
+
+---
+
+Last updated: 2026-01-11
+Format: LLM.txt v1.0 (https://llmstxt.org/)
