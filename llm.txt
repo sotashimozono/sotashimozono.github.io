@@ -3,6 +3,7 @@
 
 ## Site Overview
 - **Version**: 1.1.0
+- **Version**: 1.1.0
 - **Name**: Sota Shimozono - Physics & Code Portfolio
 - **URL**: https://codes.sota-shimozono.com
 - **Language**: Japanese (ja) / English (en)
@@ -52,6 +53,7 @@
 - GitHub Issues: https://github.com/sotashimozono/sotashimozono.github.io/issues
 
 ## Technical Details
+- **Automated Workflows**: 11 GitHub Actions workflows
 - **Hosting**: GitHub Pages
 - **Framework**: Static HTML
 - **SEO**: Optimized with meta tags, OGP, JSON-LD
