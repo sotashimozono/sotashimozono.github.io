@@ -23,5 +23,3 @@ jobs:
             https://sotashimozono.github.io/
           uploadArtifacts: true
           temporaryPublicStorage: true
-
-

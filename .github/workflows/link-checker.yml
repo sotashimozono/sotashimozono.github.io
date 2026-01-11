@@ -2,8 +2,8 @@ name: Check Links
 
 on:
   schedule:
-    - cron: '0 0 * * 0'  # 毎週日曜日 00:00 UTC
-  workflow_dispatch:  # 手動実行も可能
+    - cron: '0 0 * * 0'  # Every Sunday at 00:00 UTC
+  workflow_dispatch:  # Allow manual trigger
   push:
     branches: [main]
 
@@ -28,4 +28,3 @@ jobs:
           title: 'Broken links detected'
           content-filepath: ./lychee/out.md
           labels: bug, automated
-
