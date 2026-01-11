@@ -1,0 +1,99 @@
+name: Update AI/LLM Info Files
+
+on:
+  schedule:
+    # 毎週月曜日 00:00 UTC に実行
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'README.md'
+      - 'index.html'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-ai-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Update ai.txt and llm.txt
+        run: |
+          CURRENT_DATE=$(date +%Y-%m-%d)
+          VERSION="1.1.0"
+          
+          # ai.txtとllm.txtの最終更新日を更新
+          for file in ai.txt llm.txt; do
+            if [ -f "$file" ]; then
+              # Last Updatedの日付を更新
+              sed -i "s/Last updated: .*/Last updated: ${CURRENT_DATE}/" "$file"
+              sed -i "s/- \*\*Last Updated\*\*: .*/- **Last Updated**: ${CURRENT_DATE}/" "$file"
+              
+              # バージョン情報がない場合は追加
+              if ! grep -q "Version:" "$file"; then
+                # Site Overviewセクションの後に追加
+                sed -i "/## Site Overview/a- **Version**: ${VERSION}" "$file"
+              else
+                # 既存のバージョンを更新
+                sed -i "s/- \*\*Version\*\*: .*/- **Version**: ${VERSION}/" "$file"
+              fi
+              
+              echo "Updated $file with date: ${CURRENT_DATE} and version: ${VERSION}"
+            fi
+          done
+          
+          # README.mdから主要情報を抽出してai.txtに反映
+          if [ -f "README.md" ]; then
+            # ワークフロー数をカウント
+            WORKFLOW_COUNT=$(find .github/workflows -name "*.yml" -o -name "*.yaml" | wc -l)
+            
+            # ai.txtのTechnical Detailsセクションを更新
+            for file in ai.txt llm.txt; do
+              if [ -f "$file" ]; then
+                # ワークフロー数を更新または追加
+                if grep -q "Automated Workflows:" "$file"; then
+                  sed -i "s/- \*\*Automated Workflows\*\*: .*/- **Automated Workflows**: ${WORKFLOW_COUNT} GitHub Actions workflows/" "$file"
+                else
+                  sed -i "/## Technical Details/a- **Automated Workflows**: ${WORKFLOW_COUNT} GitHub Actions workflows" "$file"
+                fi
+              fi
+            done
+          fi
+      
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Create Pull Request
+        if: steps.check_changes.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'chore: Update ai.txt and llm.txt metadata'
+          title: '🤖 Update AI/LLM info files'
+          body: |
+            ## 📅 Automated AI/LLM Files Update
+            
+            This PR automatically updates AI-friendly information files with:
+            - Current timestamp
+            - Version information
+            - Metadata extracted from README.md
+            - Workflow statistics
+            
+            ### Changes:
+            - Updated ai.txt with latest metadata
+            - Updated llm.txt with latest metadata
+            - Synced version and date information
+            
+            This is an automated weekly maintenance task.
+          branch: auto-update-ai-files-${{ github.run_number }}
+          labels: chore, automated
+          delete-branch: true
