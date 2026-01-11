@@ -27,7 +27,7 @@ jobs:
       - name: Validate JSON files
         run: |
           echo "Validating JSON files..."
-          for file in $(find . -name "*.json" -not -path "./.git/*"); do
+          for file in $(find . -name "*.json" -not -path "./.git/*" -not -path "./.devcontainer/*"); do
             echo "Checking $file"
             python3 -m json.tool "$file" > /dev/null || exit 1
           done
