@@ -12,9 +12,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            console.log('✅ Successfully deployed to: ${{ github.event.deployment_status.target_url }}');
-            
-            // 最新のコミットにコメント追加（オプション）
+            // 最新のコミットにコメント追加
             const commits = await github.rest.repos.listCommits({
               owner: context.repo.owner,
               repo: context.repo.repo,
