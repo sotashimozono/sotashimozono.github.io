@@ -164,12 +164,27 @@
                 statsDiv.style.fontSize = '0.85em';
                 statsDiv.style.color = '#888';
                 statsDiv.style.marginTop = '8px';
-                statsDiv.innerHTML = `
-                    <span>⭐ ${stars}</span> 
-                    <span style="margin-left: 15px;">🍴 ${forks}</span>
-                    <span style="margin-left: 15px;">💻 ${language}</span>
-                    <span style="margin-left: 15px;">📅 ${updatedAt}</span>
-                `;
+                
+                // XSS対策: 各要素を個別に作成
+                const starSpan = document.createElement('span');
+                starSpan.textContent = `⭐ ${stars}`;
+                statsDiv.appendChild(starSpan);
+                
+                const forkSpan = document.createElement('span');
+                forkSpan.style.marginLeft = '15px';
+                forkSpan.textContent = `🍴 ${forks}`;
+                statsDiv.appendChild(forkSpan);
+                
+                const langSpan = document.createElement('span');
+                langSpan.style.marginLeft = '15px';
+                langSpan.textContent = `💻 ${language}`;
+                statsDiv.appendChild(langSpan);
+                
+                const dateSpan = document.createElement('span');
+                dateSpan.style.marginLeft = '15px';
+                dateSpan.textContent = `📅 ${updatedAt}`;
+                statsDiv.appendChild(dateSpan);
+                
                 link.appendChild(statsDiv);
                 
                 reposDiv.appendChild(link);
