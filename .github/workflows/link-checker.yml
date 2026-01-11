@@ -1,0 +1,31 @@
+name: Check Links
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # 毎週日曜日 00:00 UTC
+  workflow_dispatch:  # 手動実行も可能
+  push:
+    branches: [main]
+
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1.9.3
+        with:
+          args: >-
+            --verbose --no-progress './**/*.html' './**/*.md'
+            --exclude-path './node_modules'
+          fail: true
+
+      - name: Create Issue if links are broken
+        if: failure()
+        uses: peter-evans/create-issue-from-file@v4
+        with:
+          title: 'Broken links detected'
+          content-filepath: ./lychee/out.md
+          labels: bug, automated
+
