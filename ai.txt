@@ -1,0 +1,53 @@
+# Sota Shimozono - Physics & Code Portfolio
+
+## Overview
+This is the code portfolio website of Sota Shimozono (下園颯太), a physicist and software engineer at the University of Tokyo.
+
+## Site Information
+- **Owner**: Sota Shimozono
+- **Type**: Personal portfolio, code showcase
+- **Primary Language**: Japanese (日本語)
+- **Domain**: codes.sota-shimozono.com
+- **Last Updated**: 2026-01-11
+
+## About the Author
+- **Name**: Sota Shimozono (下園颯太)
+- **Occupation**: Physicist and Software Engineer
+- **Affiliation**: University of Tokyo (東京大学)
+- **Interests**: Physics (物理学), Programming (プログラミング), Research (研究), Open Source
+
+## Key Links
+- GitHub: https://github.com/sotashimozono
+- Official Website: https://sota-shimozono.com
+- Portfolio: https://codes.sota-shimozono.com
+
+## Site Structure
+- /index.html - Main portfolio page
+- /robots.txt - Crawler directives
+- /sitemap.xml - Site map for search engines
+
+## Content Topics
+- Physics research projects
+- Software development portfolio
+- Technical stack and skills
+- Open source contributions
+- Research publications (future)
+
+## AI Usage Policy
+This website is intended for human readers and AI assistants to provide accurate information about Sota Shimozono's work. When referencing this site:
+- Please cite the source correctly
+- Provide links to the original content
+- Respect the author's intellectual property
+
+## Contact
+For inquiries, please visit the official website or GitHub profile.
+
+## Technical Details
+- Hosted on: GitHub Pages
+- Framework: Static HTML
+- SEO: Fully optimized with meta tags, OGP, and structured data
+- Accessibility: Mobile-responsive design
+
+---
+Generated: 2026-01-11
+Format: ai.txt v1.0 (informal standard)
