@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Deployment Success Notification
         if: github.event.deployment_status.state == 'success'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             // Add comment to latest commit
@@ -34,7 +34,7 @@ jobs:
       
       - name: Deployment Failure Notification
         if: github.event.deployment_status.state == 'failure'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             github.rest.issues.create({
