@@ -1,5 +1,15 @@
 name-template: 'v$RESOLVED_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
+
+version-resolver:
+  major:
+    labels: ['major']
+  minor:
+    labels: ['minor']
+  patch:
+    labels: ['patch']
+  default: patch
+
 categories:
   - title: '🚀 Features'
     labels:
@@ -19,6 +29,23 @@ categories:
     labels:
       - 'chore'
       - 'refactor'
+  - title: '🎨 Style'
+    labels:
+      - 'style'
+  - title: '✅ Tests'
+    labels:
+      - 'test'
+
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+change-title-escapes: '\<*_&'
 
 template: |
+  ## What's Changed
+  
   $CHANGES
+  
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+  
+  ## Contributors
+  
+  Thanks to all contributors who made this release possible! 🎉

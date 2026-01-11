@@ -1,0 +1,51 @@
+name: Update SEO Files
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'  # 毎月1日 00:00 UTC
+  workflow_dispatch:  # 手動実行も可能
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-seo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Update sitemap timestamp
+        run: |
+          if [ -f sitemap.xml ]; then
+            CURRENT_DATE=$(date +%Y-%m-%d)
+            sed -i "s/<lastmod>.*<\/lastmod>/<lastmod>${CURRENT_DATE}<\/lastmod>/g" sitemap.xml
+            echo "Updated sitemap.xml with date: ${CURRENT_DATE}"
+          fi
+      
+      - name: Update robots.txt timestamp
+        run: |
+          if [ -f robots.txt ]; then
+            echo "# Last updated: $(date +%Y-%m-%d)" >> robots.txt
+            echo "Updated robots.txt"
+          fi
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'chore: Update SEO metadata timestamps'
+          title: '🔄 Update SEO metadata'
+          body: |
+            ## 📅 Automated SEO Update
+            
+            This PR automatically updates SEO-related files with current timestamps.
+            
+            ### Changes:
+            - Updated sitemap.xml lastmod dates
+            - Updated robots.txt timestamp
+            
+            This is an automated monthly maintenance task.
+          branch: auto-update-seo-${{ github.run_number }}
+          labels: chore, automated
+          delete-branch: true
