@@ -1,4 +1,4 @@
-# llm.txt - AI Agent Information File
+# ai.txt - AI Agent Information File (alias for llm.txt)
 # This file provides structured information about this website for AI agents and LLMs
 
 ## Site Overview
@@ -102,4 +102,4 @@ For inquiries, please visit: https://sota-shimozono.com
 This site is part of Sota Shimozono's online presence. For comprehensive information including blog posts and personal content, refer to the main site at https://sota-shimozono.com.
 
 ---
-End of llm.txt
+End of ai.txt
