@@ -1,0 +1,28 @@
+{
+  "name": "Sota Shimozono - Physics & Code Portfolio",
+  "short_name": "Sota Portfolio",
+  "description": "大学院生、理論物理専攻のSota Shimozonoのコードポートフォリオ",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://github.com/sotashimozono.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://github.com/sotashimozono.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "portfolio", "productivity"],
+  "lang": "ja",
+  "dir": "ltr"
+}

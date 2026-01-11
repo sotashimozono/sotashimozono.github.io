@@ -1,6 +1,38 @@
 version: 2
 updates:
+  # GitHub Actions の依存関係を週次で更新
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "chore(deps)"
+  
+  # npm パッケージの依存関係を週次で更新（将来的にJavaScriptライブラリを追加した場合）
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "npm"
+    commit-message:
+      prefix: "chore(deps)"
+    # セキュリティアップデートは自動で開く
+    open-pull-requests-limit: 10
+    # バージョニング戦略
+    versioning-strategy: increase
+  
+  # pip パッケージの依存関係（Python スクリプトを使用する場合）
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "chore(deps)"

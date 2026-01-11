@@ -2,6 +2,7 @@
 # For AI agents like ChatGPT, Claude, Perplexity, etc.
 
 ## Site Overview
+- **Version**: 1.1.0
 - **Name**: Sota Shimozono - Physics & Code Portfolio
 - **URL**: https://codes.sota-shimozono.com
 - **Language**: Japanese (ja) / English (en)
@@ -27,8 +28,8 @@
 /index.html        # Main page
 /robots.txt        # Crawler directives
 /sitemap.xml       # Site map
-/llm.txt           # AI-friendly site info (same as ai.txt)
-/ai.txt            # AI-friendly site info
+/llm.txt           # AI-friendly site info
+/ai.txt            # AI-friendly site info (same as llm.txt)
 ```
 
 ## Content Topics
@@ -55,6 +56,11 @@
 - **Framework**: Static HTML
 - **SEO**: Optimized with meta tags, OGP, JSON-LD
 - **Sitemap**: Available at /sitemap.xml
+- **PWA**: Progressive Web App support with Service Worker
+- **Security**: Content Security Policy, security headers via meta tags
+- **Analytics**: Privacy-focused analytics ready (Plausible)
+- **Automated Workflows**: 11 GitHub Actions workflows for CI/CD
+- **API Integration**: Dynamic content via GitHub API
 
 ## Notes for AI Agents
 When referencing this site:

@@ -26,6 +26,22 @@
     <meta name="twitter:image" content="https://github.com/sotashimozono.png">
     <meta name="twitter:creator" content="@sotashimozono">
     
+    <!-- Security Headers (via meta tags) -->
+    <!-- Note: 'unsafe-inline' is used for inline styles and scripts. Consider using nonces or external files for stricter CSP in production. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://api.github.com https://plausible.io; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; font-src 'self' data:; connect-src 'self' https://api.github.com https://plausible.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=()">
+    
+    <!-- PWA Support -->
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Sota Shimozono">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://github.com/sotashimozono.png">
+    <link rel="apple-touch-icon" href="https://github.com/sotashimozono.png">
+    
     <style>
         body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; }
         h1 { border-bottom: 2px solid #eee; }
@@ -73,5 +89,133 @@
     
     <h2>Links</h2>
     <p><a href="https://sota-shimozono.com">Official Site (Blog, Tea)</a></p>
+    
+    <h2>GitHub Projects</h2>
+    <div id="github-repos">
+        <p>読み込み中...</p>
+    </div>
+    
+    <!-- Analytics (Plausible - プライバシー重視) -->
+    <!-- 使用する場合は data-domain を設定してコメント解除 -->
+    <!-- <script defer data-domain="codes.sota-shimozono.com" src="https://plausible.io/js/script.js"></script> -->
+    
+    <!-- GitHub API Integration -->
+    <script>
+        // GitHub APIを使用してリポジトリ情報を動的に取得
+        const GITHUB_USERNAME = 'sotashimozono';
+        const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos`;
+        
+        async function fetchGitHubRepos() {
+            try {
+                const response = await fetch(GITHUB_API_URL + '?sort=updated&per_page=10');
+                if (!response.ok) {
+                    throw new Error('GitHub API request failed');
+                }
+                const repos = await response.json();
+                displayRepos(repos);
+            } catch (error) {
+                console.error('Error fetching GitHub repos:', error);
+                document.getElementById('github-repos').innerHTML = 
+                    '<p>GitHubリポジトリ情報の取得に失敗しました。</p>';
+            }
+        }
+        
+        function displayRepos(repos) {
+            const container = document.getElementById('github-repos');
+            
+            if (!repos || repos.length === 0) {
+                container.innerHTML = '<p>公開リポジトリが見つかりませんでした。</p>';
+                return;
+            }
+            
+            // 公開リポジトリのみフィルタリング
+            const publicRepos = repos.filter(repo => !repo.private);
+            
+            const reposDiv = document.createElement('div');
+            reposDiv.style.display = 'grid';
+            reposDiv.style.gap = '15px';
+            
+            publicRepos.forEach(repo => {
+                const stars = repo.stargazers_count || 0;
+                const forks = repo.forks_count || 0;
+                const language = repo.language || 'Unknown';
+                const description = repo.description || '説明なし';
+                const updatedAt = new Date(repo.updated_at).toLocaleDateString('ja-JP');
+                
+                // XSS対策: 要素を安全に作成
+                const link = document.createElement('a');
+                link.href = repo.html_url;
+                link.className = 'project-link';
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                
+                const title = document.createElement('strong');
+                title.textContent = repo.name;
+                link.appendChild(title);
+                
+                const descDiv = document.createElement('div');
+                descDiv.style.fontSize = '0.9em';
+                descDiv.style.color = '#666';
+                descDiv.style.marginTop = '5px';
+                descDiv.textContent = description;
+                link.appendChild(descDiv);
+                
+                const statsDiv = document.createElement('div');
+                statsDiv.style.fontSize = '0.85em';
+                statsDiv.style.color = '#888';
+                statsDiv.style.marginTop = '8px';
+                
+                // XSS対策: 各要素を個別に作成
+                const starSpan = document.createElement('span');
+                starSpan.textContent = `⭐ ${stars}`;
+                statsDiv.appendChild(starSpan);
+                
+                const forkSpan = document.createElement('span');
+                forkSpan.style.marginLeft = '15px';
+                forkSpan.textContent = `🍴 ${forks}`;
+                statsDiv.appendChild(forkSpan);
+                
+                const langSpan = document.createElement('span');
+                langSpan.style.marginLeft = '15px';
+                langSpan.textContent = `💻 ${language}`;
+                statsDiv.appendChild(langSpan);
+                
+                const dateSpan = document.createElement('span');
+                dateSpan.style.marginLeft = '15px';
+                dateSpan.textContent = `📅 ${updatedAt}`;
+                statsDiv.appendChild(dateSpan);
+                
+                link.appendChild(statsDiv);
+                
+                reposDiv.appendChild(link);
+            });
+            
+            container.innerHTML = '';
+            container.appendChild(reposDiv);
+        }
+        
+        // ページ読み込み時にリポジトリ情報を取得
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fetchGitHubRepos);
+        } else {
+            fetchGitHubRepos();
+        }
+    </script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        // Service Workerの登録（PWA対応）
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
