@@ -28,9 +28,10 @@ jobs:
         run: |
           if [ -f robots.txt ]; then
             # Remove old timestamp if exists and add new one
+            CURRENT_DATE=$(date +%Y-%m-%d)
             sed -i '/^# Last updated:/d' robots.txt
-            sed -i '1i# Last updated: '"$(date +%Y-%m-%d)" robots.txt
-            echo "Updated robots.txt"
+            sed -i "1i# Last updated: ${CURRENT_DATE}" robots.txt
+            echo "Updated robots.txt with timestamp: ${CURRENT_DATE}"
           fi
       
       - name: Create Pull Request
