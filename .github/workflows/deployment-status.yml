@@ -3,6 +3,10 @@ name: Deployment Status
 on:
   deployment_status:
 
+permissions:
+  contents: write
+  issues: write
+
 jobs:
   notify:
     runs-on: ubuntu-latest
