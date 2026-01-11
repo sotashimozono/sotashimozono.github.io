@@ -9,7 +9,7 @@
 - **Last Updated**: 2026-01-11
 
 ## Author
-- **Name**: Sota Shimozono (下園颯太)
+- **Name**: Sota Shimozono (下薗創太)
 - **Role**: Physicist and Software Engineer
 - **Affiliation**: University of Tokyo (東京大学)
 - **GitHub**: https://github.com/sotashimozono
