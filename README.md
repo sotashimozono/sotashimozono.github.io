@@ -1,4 +1,4 @@
-# MyModule.jl
+# sotashimozono.github.io.jl
 
 [![docs: dev](https://img.shields.io/badge/docs-dev-blue.svg)]()
 [![Julia](https://img.shields.io/badge/julia-v1.12+-9558b2.svg)](https://julialang.org)

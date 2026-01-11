@@ -1,7 +1,7 @@
-# MyModule.jl
+# sotashimozono.github.io.jl
 
 ## Models
 
 ```@autodocs
-Modules = [MyModule]
+Modules = [sotashimozono.github.io]
 ```

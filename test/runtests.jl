@@ -1,9 +1,9 @@
 ENV["GKSwstype"] = "100"
 
-using MyModule, Test
+using sotashimozono.github.io, Test
 const dirs = []
 
-const FIG_BASE = joinpath(pkgdir(MyModule), "docs", "src", "assets", "figures")
+const FIG_BASE = joinpath(pkgdir(sotashimozono.github.io), "docs", "src", "assets", "figures")
 const PATHS = Dict()
 mkpath.(values(PATHS))
 
