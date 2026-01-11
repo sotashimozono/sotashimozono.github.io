@@ -59,7 +59,7 @@
 - **PWA**: Progressive Web App support with Service Worker
 - **Security**: Content Security Policy, security headers via meta tags
 - **Analytics**: Privacy-focused analytics ready (Plausible)
-- **Automated Workflows**: 10 GitHub Actions workflows for CI/CD
+- **Automated Workflows**: 11 GitHub Actions workflows for CI/CD
 - **API Integration**: Dynamic content via GitHub API
 
 ## Notes for AI Agents
