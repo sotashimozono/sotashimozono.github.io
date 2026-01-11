@@ -36,7 +36,7 @@ jobs:
               # バージョン情報がない場合は追加
               if ! grep -q "Version:" "$file"; then
                 # Site Overviewセクションの後に追加
-                sed -i "/## Site Overview/a- **Version**: ${VERSION}" "$file"
+                sed -i "/## Site Overview/a - **Version**: ${VERSION}" "$file"
               else
                 # 既存のバージョンを更新
                 sed -i "s/- \*\*Version\*\*: .*/- **Version**: ${VERSION}/" "$file"
@@ -58,7 +58,7 @@ jobs:
                 if grep -q "Automated Workflows:" "$file"; then
                   sed -i "s/- \*\*Automated Workflows\*\*: .*/- **Automated Workflows**: ${WORKFLOW_COUNT} GitHub Actions workflows/" "$file"
                 else
-                  sed -i "/## Technical Details/a- **Automated Workflows**: ${WORKFLOW_COUNT} GitHub Actions workflows" "$file"
+                  sed -i "/## Technical Details/a - **Automated Workflows**: ${WORKFLOW_COUNT} GitHub Actions workflows" "$file"
                 fi
               fi
             done

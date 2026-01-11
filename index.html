@@ -27,6 +27,7 @@
     <meta name="twitter:creator" content="@sotashimozono">
     
     <!-- Security Headers (via meta tags) -->
+    <!-- Note: 'unsafe-inline' is used for inline styles and scripts. Consider using nonces or external files for stricter CSP in production. -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://api.github.com https://plausible.io; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; font-src 'self' data:; connect-src 'self' https://api.github.com https://plausible.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -130,7 +131,9 @@
             // 公開リポジトリのみフィルタリング
             const publicRepos = repos.filter(repo => !repo.private);
             
-            let html = '<div style="display: grid; gap: 15px;">';
+            const reposDiv = document.createElement('div');
+            reposDiv.style.display = 'grid';
+            reposDiv.style.gap = '15px';
             
             publicRepos.forEach(repo => {
                 const stars = repo.stargazers_count || 0;
@@ -139,24 +142,41 @@
                 const description = repo.description || '説明なし';
                 const updatedAt = new Date(repo.updated_at).toLocaleDateString('ja-JP');
                 
-                html += `
-                    <a href="${repo.html_url}" class="project-link" target="_blank" rel="noopener noreferrer">
-                        <strong>${repo.name}</strong>
-                        <div style="font-size: 0.9em; color: #666; margin-top: 5px;">
-                            ${description}
-                        </div>
-                        <div style="font-size: 0.85em; color: #888; margin-top: 8px;">
-                            <span>⭐ ${stars}</span> 
-                            <span style="margin-left: 15px;">🍴 ${forks}</span>
-                            <span style="margin-left: 15px;">💻 ${language}</span>
-                            <span style="margin-left: 15px;">📅 ${updatedAt}</span>
-                        </div>
-                    </a>
+                // XSS対策: 要素を安全に作成
+                const link = document.createElement('a');
+                link.href = repo.html_url;
+                link.className = 'project-link';
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                
+                const title = document.createElement('strong');
+                title.textContent = repo.name;
+                link.appendChild(title);
+                
+                const descDiv = document.createElement('div');
+                descDiv.style.fontSize = '0.9em';
+                descDiv.style.color = '#666';
+                descDiv.style.marginTop = '5px';
+                descDiv.textContent = description;
+                link.appendChild(descDiv);
+                
+                const statsDiv = document.createElement('div');
+                statsDiv.style.fontSize = '0.85em';
+                statsDiv.style.color = '#888';
+                statsDiv.style.marginTop = '8px';
+                statsDiv.innerHTML = `
+                    <span>⭐ ${stars}</span> 
+                    <span style="margin-left: 15px;">🍴 ${forks}</span>
+                    <span style="margin-left: 15px;">💻 ${language}</span>
+                    <span style="margin-left: 15px;">📅 ${updatedAt}</span>
                 `;
+                link.appendChild(statsDiv);
+                
+                reposDiv.appendChild(link);
             });
             
-            html += '</div>';
-            container.innerHTML = html;
+            container.innerHTML = '';
+            container.appendChild(reposDiv);
         }
         
         // ページ読み込み時にリポジトリ情報を取得

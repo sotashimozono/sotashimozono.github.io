@@ -43,14 +43,13 @@ self.addEventListener('activate', (event) => {
     caches.keys()
       .then((cacheNames) => {
         // 古いキャッシュを削除
-        return Promise.all(
-          cacheNames.map((cacheName) => {
-            if (cacheName !== CACHE_NAME) {
-              console.log('[Service Worker] Deleting old cache:', cacheName);
-              return caches.delete(cacheName);
-            }
-          })
-        );
+        const deletePromises = cacheNames
+          .filter((cacheName) => cacheName !== CACHE_NAME)
+          .map((cacheName) => {
+            console.log('[Service Worker] Deleting old cache:', cacheName);
+            return caches.delete(cacheName);
+          });
+        return Promise.all(deletePromises);
       })
       .then(() => {
         console.log('[Service Worker] Activation complete');
