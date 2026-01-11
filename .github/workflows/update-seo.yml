@@ -27,10 +27,9 @@ jobs:
       - name: Update robots.txt timestamp
         run: |
           if [ -f robots.txt ]; then
-            # Remove old timestamp if exists
+            # Remove old timestamp if exists and add new one
             sed -i '/^# Last updated:/d' robots.txt
-            # Add new timestamp
-            echo "# Last updated: $(date +%Y-%m-%d)" >> robots.txt
+            sed -i '1i# Last updated: '"$(date +%Y-%m-%d)" robots.txt
             echo "Updated robots.txt"
           fi
       
