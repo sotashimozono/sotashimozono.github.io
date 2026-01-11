@@ -21,7 +21,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v11
         with:
           urls: |
-            https://sotashimozono.github.io/
+            https://codes.sota-shimozono.com/
           uploadArtifacts: true
           temporaryPublicStorage: true
           
