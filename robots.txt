@@ -1,3 +1,4 @@
+# Last updated: 2026-02-01
 # robots.txt for codes.sota-shimozono.com
 
 User-agent: *
