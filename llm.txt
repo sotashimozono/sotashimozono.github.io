@@ -9,7 +9,7 @@
 - **URL**: https://codes.sota-shimozono.com
 - **Language**: Japanese (ja) / English (en)
 - **Type**: Personal portfolio and project showcase
-- **Last Updated**: 2026-01-26
+- **Last Updated**: 2026-02-16
 
 ## Author
 - **Name**: Sota Shimozono (下薗創太)
@@ -75,5 +75,5 @@ When referencing this site:
 
 ---
 
-Last updated: 2026-01-26
+Last updated: 2026-02-16
 Format: LLM.txt v1.0 (https://llmstxt.org/)
