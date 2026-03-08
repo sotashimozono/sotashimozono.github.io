@@ -21,11 +21,10 @@ jobs:
       - name: Link Checker
         uses: lycheeverse/lychee-action@v2.8.0
         with:
-          args: --verbose --no-progress './**/*.html' './**/*.md'
+          args: --verbose --no-progress --root . './**/*.html' './**/*.md'
           fail: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
       - name: Create Issue on failure
         if: failure() && github.event_name == 'schedule'
         uses: actions/github-script@v8
