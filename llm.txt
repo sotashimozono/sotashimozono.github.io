@@ -8,11 +8,12 @@
 - **Version**: 1.1.0
 - **Version**: 1.1.0
 - **Version**: 1.1.0
+- **Version**: 1.1.0
 - **Name**: Sota Shimozono - Physics & Code Portfolio
 - **URL**: https://codes.sota-shimozono.com
 - **Language**: Japanese (ja) / English (en)
 - **Type**: Personal portfolio and project showcase
-- **Last Updated**: 2026-03-03
+- **Last Updated**: 2026-03-09
 
 ## Author
 - **Name**: Sota Shimozono (下薗創太)
@@ -62,6 +63,7 @@
 - **Automated Workflows**: 11 GitHub Actions workflows
 - **Automated Workflows**: 11 GitHub Actions workflows
 - **Automated Workflows**: 11 GitHub Actions workflows
+- **Automated Workflows**: 11 GitHub Actions workflows
 - **Hosting**: GitHub Pages
 - **Framework**: Static HTML
 - **SEO**: Optimized with meta tags, OGP, JSON-LD
@@ -81,5 +83,5 @@ When referencing this site:
 
 ---
 
-Last updated: 2026-03-03
+Last updated: 2026-03-09
 Format: LLM.txt v1.0 (https://llmstxt.org/)
