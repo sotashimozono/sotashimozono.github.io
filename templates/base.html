@@ -1,0 +1,109 @@
+{%- set pg_title = config.title -%}
+{%- set pg_desc = config.description -%}
+{%- set pg_url = config.base_url ~ "/" -%}
+{%- if page -%}
+  {%- set pg_title = page.title ~ " — " ~ config.title -%}
+  {%- set pg_desc = page.description | default(value=config.description) -%}
+  {%- set pg_url = page.permalink -%}
+{%- elif section and section.title and section.title != config.title -%}
+  {%- set pg_title = section.title ~ " — " ~ config.title -%}
+  {%- set pg_desc = section.description | default(value=config.description) -%}
+  {%- set pg_url = section.permalink -%}
+{%- elif section -%}
+  {%- set pg_url = section.permalink -%}
+{%- endif -%}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ pg_title }}</title>
+
+    <meta name="description" content="{{ pg_desc }}">
+    <meta name="author" content="{{ config.extra.author }}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ pg_url | safe }}">
+
+    <link rel="alternate" hreflang="ja" href="{{ config.base_url }}/">
+    <link rel="alternate" hreflang="en" href="{{ config.base_url }}/en/">
+    <link rel="alternate" hreflang="x-default" href="{{ config.base_url }}/">
+
+    <meta property="og:type" content="{% if page %}article{% else %}website{% endif %}">
+    <meta property="og:title" content="{{ pg_title }}">
+    <meta property="og:description" content="{{ pg_desc }}">
+    <meta property="og:url" content="{{ pg_url | safe }}">
+    <meta property="og:image" content="{{ config.base_url }}{{ config.extra.og_image }}">
+    <meta property="og:locale" content="{% if lang == 'ja' %}ja_JP{% else %}en_US{% endif %}">
+    <meta property="og:locale:alternate" content="{% if lang == 'ja' %}en_US{% else %}ja_JP{% endif %}">
+    <meta property="og:site_name" content="Sota Shimozono Portfolio">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ pg_title }}">
+    <meta name="twitter:description" content="{{ pg_desc }}">
+    <meta name="twitter:image" content="{{ config.base_url }}{{ config.extra.og_image }}">
+    <meta name="twitter:creator" content="{{ config.extra.twitter_creator }}">
+
+    <meta name="theme-color" content="#0b0b0c">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://github.com/sotashimozono.png">
+    <link rel="apple-touch-icon" href="https://github.com/sotashimozono.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "{{ config.base_url | safe }}#person",
+          "name": "{{ config.extra.author | safe }}",
+          "alternateName": "{{ config.extra.author_ja | safe }}",
+          "url": "{{ config.base_url | safe }}",
+          "image": "https://avatars.githubusercontent.com/u/187091095",
+          "sameAs": [
+            "https://github.com/{{ config.extra.github_user | safe }}",
+            "{{ config.extra.official_site | safe }}"
+          ],
+          "jobTitle": "Graduate Student in Physics",
+          "worksFor": { "@type": "Organization", "name": "{{ config.extra.affiliation | safe }}", "alternateName": "{{ config.extra.affiliation_ja | safe }}" },
+          "knowsAbout": ["Physics","Matrix Product States","Quantum Many-Body Systems","Julia Programming","Software Development"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "{{ config.base_url | safe }}#website",
+          "url": "{{ config.base_url | safe }}",
+          "name": "{{ config.title | safe }}",
+          "description": "{{ config.description | safe }}",
+          "publisher": { "@id": "{{ config.base_url | safe }}#person" }
+        }{% block jsonld_extra %}{% endblock %}
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="{{ get_url(path='main.css') }}">
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="{{ config.base_url }}/">{{ config.extra.author }}</a>
+            <nav class="site-nav" aria-label="Primary">
+                <a href="{{ config.base_url }}/">Home</a>
+                <a href="{{ config.base_url }}/works/">Works</a>
+                <a href="{{ config.extra.official_site }}" rel="noopener">Official Site</a>
+                <a class="lang-toggle" href="{% if lang == 'ja' %}{{ config.base_url }}/en/{% else %}{{ config.base_url }}/{% endif %}">{% if lang == 'ja' %}EN{% else %}JA{% endif %}</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© {{ now() | date(format='%Y') }} {{ config.extra.author }} · <a href="https://github.com/{{ config.extra.github_user }}" rel="noopener">GitHub</a> · <a href="{{ config.extra.official_site }}" rel="noopener">Official Site</a></p>
+        </div>
+    </footer>
+</body>
+</html>
