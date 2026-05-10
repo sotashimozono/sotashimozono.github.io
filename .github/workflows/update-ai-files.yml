@@ -33,8 +33,8 @@ jobs:
               sed -i "s/Last updated: .*/Last updated: ${CURRENT_DATE}/" "$file"
               sed -i "s/- \*\*Last Updated\*\*: .*/- **Last Updated**: ${CURRENT_DATE}/" "$file"
               
-              # バージョン情報がない場合は追加
-              if ! grep -q "Version:" "$file"; then
+              # バージョン情報がない場合は追加 (固定文字列で照合: `**Version**:` のアスタリスクを含めて一致させる)
+              if ! grep -qF "**Version**:" "$file"; then
                 # Site Overviewセクションの後に追加
                 sed -i "/## Site Overview/a - **Version**: ${VERSION}" "$file"
               else
@@ -54,8 +54,8 @@ jobs:
             # ai.txtのTechnical Detailsセクションを更新
             for file in ai.txt llm.txt; do
               if [ -f "$file" ]; then
-                # ワークフロー数を更新または追加
-                if grep -q "Automated Workflows:" "$file"; then
+                # ワークフロー数を更新または追加 (固定文字列で照合: `**Automated Workflows**:` のアスタリスクを含める)
+                if grep -qF "**Automated Workflows**:" "$file"; then
                   sed -i "s/- \*\*Automated Workflows\*\*: .*/- **Automated Workflows**: ${WORKFLOW_COUNT} GitHub Actions workflows/" "$file"
                 else
                   sed -i "/## Technical Details/a - **Automated Workflows**: ${WORKFLOW_COUNT} GitHub Actions workflows" "$file"

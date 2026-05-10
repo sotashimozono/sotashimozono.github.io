@@ -14,26 +14,29 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-# Disallow AI training (optional, for privacy)
+# AI crawlers are explicitly welcomed (see also: /ai.txt and /llm.txt)
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
 
 User-agent: CCBot
-Disallow: /
+Allow: /
 
 User-agent: Google-Extended
-Disallow: /
+Allow: /
 
 User-agent: anthropic-ai
-Disallow: /
+Allow: /
 
 User-agent: Claude-Web
-Disallow: /
+Allow: /
 
-# Block common bad bots
+User-agent: PerplexityBot
+Allow: /
+
+# Block known SEO-scraper / link-graph bots
 User-agent: AhrefsBot
 Disallow: /
 
