@@ -1,2 +1,6 @@
 docs/build/
 Manifest.toml
+
+# Zola
+/public
+.zola-cache

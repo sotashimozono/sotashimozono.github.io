@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="page-head">
+    <h1>{{ section.title }}</h1>
+    {% if section.description %}<p class="lead">{{ section.description }}</p>{% endif %}
+</header>
+
+<div class="works-grid">
+    {% for w in section.pages %}
+    <article class="work-card" data-role="{{ w.extra.role | default(value='') }}">
+        <header>
+            <h2><a href="{{ w.permalink }}">{{ w.title }}</a></h2>
+            {% if w.extra.role %}<span class="badge role">{{ w.extra.role }}</span>{% endif %}
+            {% for cat in w.taxonomies.category | default(value=[]) %}<span class="badge cat">{{ cat }}</span>{% endfor %}
+        </header>
+        <p class="tagline">{% if lang == "ja" and w.extra.tagline_ja %}{{ w.extra.tagline_ja }}{% else %}{{ w.extra.tagline_en | default(value=w.description) }}{% endif %}</p>
+        <footer class="work-links">
+            {% if w.extra.repo %}<a href="{{ w.extra.repo }}" rel="noopener">repo</a>{% endif %}
+            {% if w.extra.docs_stable %}<a href="{{ w.extra.docs_stable }}">docs (stable)</a>{% endif %}
+            {% if w.extra.docs_dev %}<a href="{{ w.extra.docs_dev }}">docs (dev)</a>{% endif %}
+        </footer>
+    </article>
+    {% endfor %}
+</div>
+{% endblock %}

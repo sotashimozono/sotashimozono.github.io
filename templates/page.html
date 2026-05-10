@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block jsonld_extra %},
+        {
+          "@type": "SoftwareSourceCode",
+          "name": "{{ page.title | safe }}",
+          "description": "{{ page.description | safe }}",
+          "url": "{{ page.permalink | safe }}",
+          {% if page.extra.repo %}"codeRepository": "{{ page.extra.repo | safe }}",{% endif %}
+          {% if page.taxonomies.language %}"programmingLanguage": "{{ page.taxonomies.language | first | safe }}",{% endif %}
+          "author": { "@id": "{{ config.base_url | safe }}#person" },
+          "license": "https://opensource.org/licenses/MIT"
+        }{% endblock %}
+
+{% block content %}
+<article class="work-page">
+    <header class="page-head">
+        <p class="back"><a href="{{ config.base_url }}/works/">← Works</a></p>
+        <h1>{{ page.title }}</h1>
+        <p class="lead">{% if lang == "ja" and page.extra.tagline_ja %}{{ page.extra.tagline_ja }}{% else %}{{ page.extra.tagline_en | default(value=page.description) }}{% endif %}</p>
+        <div class="badges">
+            {% if page.extra.role %}<span class="badge role">{{ page.extra.role }}</span>{% endif %}
+            {% for cat in page.taxonomies.category | default(value=[]) %}<span class="badge cat">{{ cat }}</span>{% endfor %}
+            {% for l in page.taxonomies.language | default(value=[]) %}<span class="badge lang">{{ l }}</span>{% endfor %}
+            {% if page.extra.julia_min %}<span class="badge minver">Julia ≥ {{ page.extra.julia_min }}</span>{% endif %}
+        </div>
+        <nav class="work-links" aria-label="External resources">
+            {% if page.extra.repo %}<a href="{{ page.extra.repo }}" rel="noopener">GitHub repository</a>{% endif %}
+            {% if page.extra.docs_stable %}<a href="{{ page.extra.docs_stable }}">docs (stable)</a>{% endif %}
+            {% if page.extra.docs_dev %}<a href="{{ page.extra.docs_dev }}">docs (dev)</a>{% endif %}
+        </nav>
+    </header>
+
+    <section class="work-body">
+        {{ page.content | safe }}
+    </section>
+</article>
+{% endblock %}
