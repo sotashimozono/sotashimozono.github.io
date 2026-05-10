@@ -1,12 +1,11 @@
 +++
-title = "Sota Shimozono - Physics & Code Portfolio"
-description = "Open-source Julia libraries for lattice physics — LatticeCore.jl, Lattice2D.jl, QuasiCrystal.jl, QAtlas.jl, Reversi.jl."
+title = "Sota Shimozono - Code Portfolio"
+description = "Open-source projects in Rust, TypeScript, and Julia."
 sort_by = "weight"
 template = "index.html"
 +++
 
-理論物理を専攻する大学院生 (東京大学) として、量子多体系と格子模型を扱う
-ための Julia パッケージ群をオープンソースで公開しています。
+書いている OSS パッケージの一覧です。各パッケージのドキュメントは
+下のカードの **docs** リンクから。
 
-各パッケージのドキュメントは下のカードの **docs** リンクから。研究記録と
-ブログは [Official Site (Blog, Tea)](https://sota-shimozono.com) に。
+ブログ・自己紹介は [Official Site](https://sota-shimozono.com) に。

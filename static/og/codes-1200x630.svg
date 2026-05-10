@@ -53,8 +53,8 @@
 
   <!-- text block -->
   <text x="80" y="260" fill="#fafafa" font-size="72" font-weight="700" letter-spacing="-1">Sota Shimozono</text>
-  <text x="80" y="340" fill="#c4b5fd" font-size="40" font-weight="500">Julia OSS for lattice physics</text>
-  <text x="80" y="400" fill="#a1a1aa" font-size="26">LatticeCore · Lattice2D · QuasiCrystal · QAtlas · Reversi</text>
+  <text x="80" y="340" fill="#c4b5fd" font-size="40" font-weight="500">Code Portfolio</text>
+  <text x="80" y="400" fill="#a1a1aa" font-size="26">Rust · TypeScript · Julia · OSS projects</text>
 
   <!-- footer brand -->
   <line x1="80" y1="530" x2="1120" y2="530" stroke="#27272a" stroke-width="1"/>

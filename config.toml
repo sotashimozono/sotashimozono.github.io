@@ -1,6 +1,6 @@
 base_url = "https://codes.sota-shimozono.com"
-title = "Sota Shimozono - Physics & Code Portfolio"
-description = "Open-source Julia libraries for lattice physics — LatticeCore.jl, Lattice2D.jl, QuasiCrystal.jl, QAtlas.jl, Reversi.jl."
+title = "Sota Shimozono - Code Portfolio"
+description = "Open-source projects in Rust, TypeScript, and Julia. Package documentation is linked from each card."
 default_language = "ja"
 compile_sass = true
 generate_feeds = true
@@ -18,8 +18,8 @@ taxonomies = [
     { name = "category", feed = true },
     { name = "language" },
 ]
-title = "Sota Shimozono - Physics & Code Portfolio"
-description = "Open-source Julia libraries for lattice physics."
+title = "Sota Shimozono - Code Portfolio"
+description = "Open-source projects in Rust, TypeScript, and Julia."
 generate_feeds = true
 feed_filenames = ["atom.xml"]
 
@@ -34,6 +34,4 @@ author_ja = "下薗創太"
 github_user = "sotashimozono"
 official_site = "https://sota-shimozono.com"
 og_image = "/og/codes-1200x630.svg"
-affiliation = "The University of Tokyo"
-affiliation_ja = "東京大学"
 twitter_creator = "@sotashimozono"
