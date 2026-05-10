@@ -33,7 +33,14 @@ jobs:
       - name: Link Checker (rendered output)
         uses: lycheeverse/lychee-action@v2.8.0
         with:
-          args: --verbose --no-progress --root-dir "$GITHUB_WORKSPACE/public" './public/**/*.html'
+          # Documenter.jl docs sub-mounts (e.g. /LatticeCore.jl/stable/) are served by GitHub
+          # Pages from sibling .jl repositories' gh-pages branches at the same custom domain.
+          # They do not exist in this repo's public/, so lychee must skip them locally.
+          args: >-
+            --verbose --no-progress
+            --root-dir "$GITHUB_WORKSPACE/public"
+            --exclude "\.jl/(stable|dev)"
+            './public/**/*.html'
           fail: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
