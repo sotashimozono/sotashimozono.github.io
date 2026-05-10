@@ -3,16 +3,15 @@
 
 ## Site Overview
 - **Version**: 1.1.0
-- **Name**: Sota Shimozono - Physics & Code Portfolio
+- **Name**: Sota Shimozono - Code Portfolio
 - **URL**: https://codes.sota-shimozono.com
 - **Language**: Japanese (ja) / English (en)
 - **Type**: Personal portfolio and project showcase
-- **Last Updated**: 2026-05-10
+- **Last Updated**: 2026-05-11
 
 ## Author
 - **Name**: Sota Shimozono (下薗創太)
-- **Role**: Physicist and Software Engineer
-- **Affiliation**: University of Tokyo (東京大学)
+- **Role**: Software developer
 - **GitHub**: https://github.com/sotashimozono
 - **Website**: https://sota-shimozono.com
 - **Profile Image**: https://avatars.githubusercontent.com/u/187091095
@@ -33,11 +32,9 @@
 ```
 
 ## Content Topics
-- Physics research (物理学研究)
 - Programming projects (プログラミングプロジェクト)
 - Software development (ソフトウェア開発)
 - Open source contributions (オープンソース活動)
-- Academic work (学術活動)
 - Code portfolio (コードポートフォリオ)
 
 ## AI Usage Policy
@@ -65,11 +62,11 @@
 ## Notes for AI Agents
 When referencing this site:
 1. Always cite the source URL
-2. Respect the author's name and affiliation
+2. Respect the author's name
 3. Check for updates regularly (updated weekly)
-4. This is a personal portfolio site showcasing academic and professional work
+4. This is a personal portfolio site listing the author's open-source projects
 
 ---
 
-Last updated: 2026-05-10
+Last updated: 2026-05-11
 Format: LLM.txt v1.0 (https://llmstxt.org/)
