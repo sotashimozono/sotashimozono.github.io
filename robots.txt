@@ -1,4 +1,4 @@
-# Last updated: 2026-05-01
+# Last updated: 2026-05-11
 # robots.txt for codes.sota-shimozono.com
 
 User-agent: *
@@ -6,6 +6,7 @@ Allow: /
 
 # Sitemaps
 Sitemap: https://codes.sota-shimozono.com/sitemap.xml
+Sitemap: https://codes.sota-shimozono.com/obsidian-remote-ssh/sitemap.xml
 
 # Common crawler directives
 User-agent: Googlebot
