@@ -33,12 +33,16 @@ jobs:
       - name: Link Checker (rendered output)
         uses: lycheeverse/lychee-action@v2.8.0
         with:
-          # Documenter.jl docs sub-mounts (e.g. /LatticeCore.jl/stable/) are served by GitHub
-          # Pages from sibling .jl repositories' gh-pages branches at the same custom domain.
-          # They do not exist in this repo's public/, so lychee must skip them locally.
+          # Exclude our own domains: lychee fetches absolute URLs over the network, but the
+          # site we're checking is not yet deployed, so codes.sota-shimozono.com returns 404.
+          # The sota-shimozono.com root also genuinely 404s. Both are tautologically internal
+          # links that the post-deploy Lighthouse step will exercise anyway.
+          # Documenter.jl docs sub-mounts (e.g. /LatticeCore.jl/stable/) are served from
+          # sibling repos' gh-pages — not in this repo's public/.
           args: >-
             --verbose --no-progress
             --root-dir "$GITHUB_WORKSPACE/public"
+            --exclude "^https?://(codes\.)?sota-shimozono\.com"
             --exclude "\.jl/(stable|dev)"
             './public/**/*.html'
           fail: true
