@@ -31,7 +31,7 @@ jobs:
         run: zola build
 
       - name: Link Checker (rendered output)
-        uses: lycheeverse/lychee-action@v2.8.0
+        uses: lycheeverse/lychee-action@v2.9.0
         with:
           # Exclude our own domains: lychee fetches absolute URLs over the network, but the
           # site we're checking is not yet deployed, so codes.sota-shimozono.com returns 404.
